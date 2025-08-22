@@ -44,8 +44,8 @@ const DropdownMenuSeparator = () => (
   <div className="my-1 h-px bg-gray-200" />
 )
 
-const DropdownMenuHeader = ({ children }: { children: React.ReactNode }) => (
-  <div className="px-4 py-2 text-sm font-semibold text-gray-900">{children}</div>
+const DropdownMenuHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+  <div className={`px-4 py-2 text-sm font-semibold text-gray-900 ${className || ''}`}>{children}</div>
 )
 
 export {

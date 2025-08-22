@@ -39,7 +39,7 @@ export function NotificationBell() {
             </Badge>
           )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-80" align="end">
+      <DropdownMenuContent className="w-80 absolute right-0">
         <DropdownMenuHeader className="flex items-center justify-between">
           <span className="font-semibold">Notifications</span>
           {unreadCount > 0 && (
