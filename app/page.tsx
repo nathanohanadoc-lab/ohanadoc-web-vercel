@@ -6,6 +6,7 @@ export default function HomePage() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo.png" alt="OhanaDoc" className="h-10 w-10" />
               <h1 className="text-2xl font-bold">OhanaDoc Admin</h1>
             </div>
@@ -58,7 +59,7 @@ export default function HomePage() {
             <div className="surface-elevated rounded-xl p-6 hover-lift transition-transform">
               <div className="bg-brand-tertiary rounded-lg p-4 text-white">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm opacity-90">Today's Appointments</span>
+                  <span className="text-sm opacity-90">Today&apos;s Appointments</span>
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>

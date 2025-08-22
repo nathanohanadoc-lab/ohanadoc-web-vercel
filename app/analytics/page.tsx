@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { Card, SrOnly } from '@ohanadoc/ui';
+import { Card, SrOnly } from '@/components/ui/card';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -28,7 +28,7 @@ type KPISet = {
 export default function AnalyticsPage() {
   const [kpis, setKpis] = useState<KPISet | null>(null);
   const [series, setSeries] = useState<{ labels: string[]; revenue: number[]; expenses: number[]; patients: number[] } | null>(null);
-  const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000/v1';
+  const base = process.env['NEXT_PUBLIC_API_BASE'] || 'http://localhost:4000/v1';
   useEffect(() => {
     const params = new URLSearchParams({ from: '2025-01-01', to: '2025-03-31', granularity: 'month' });
     fetch(`${base}/analytics/overview?${params.toString()}`)

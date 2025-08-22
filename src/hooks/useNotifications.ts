@@ -34,7 +34,7 @@ export function useNotifications(): NotificationsHook {
   // Load initial notifications
   useEffect(() => {
     if (isAuthenticated) {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/notifications`, {
+      fetch(`${process.env['NEXT_PUBLIC_API_URL']}/v1/notifications`, {
         credentials: 'include',
       })
         .then(res => res.json())
@@ -114,7 +114,7 @@ export function useNotifications(): NotificationsHook {
     );
 
     // Send to server
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/notifications/${id}/read`, {
+    fetch(`${process.env['NEXT_PUBLIC_API_URL']}/v1/notifications/${id}/read`, {
       method: 'PATCH',
       credentials: 'include',
     }).catch(error => {
@@ -138,7 +138,7 @@ export function useNotifications(): NotificationsHook {
     // Send to server (you'd implement this endpoint)
     Promise.all(
       unreadIds.map(id =>
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/notifications/${id}/read`, {
+        fetch(`${process.env['NEXT_PUBLIC_API_URL']}/v1/notifications/${id}/read`, {
           method: 'PATCH',
           credentials: 'include',
         })

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card } from '@ohanadoc/ui';
+import { Card } from '@/components/ui/card';
 import { Scatter, Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -47,7 +47,7 @@ export default function GeoArbitragePage() {
   const [stateData, setStateData] = useState<StateData[]>([]);
   const [opportunities, setOpportunities] = useState<ArbitrageOpportunity[]>([]);
   const [selectedProviderState, setSelectedProviderState] = useState('OH');
-  const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000/v1';
+  const base = process.env['NEXT_PUBLIC_API_BASE'] || 'http://localhost:4000/v1';
 
   useEffect(() => {
     // Simulate fetching state data

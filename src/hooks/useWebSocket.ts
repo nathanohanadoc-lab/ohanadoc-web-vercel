@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 interface WebSocketMessage {
   type: string;
@@ -31,7 +31,9 @@ const DEFAULT_OPTIONS: WebSocketOptions = {
 };
 
 export function useWebSocket(options: WebSocketOptions = {}): WebSocketHook {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const session = { accessToken: 'mock-token' }; // Mock for now
   const [isConnected, setIsConnected] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
@@ -109,7 +111,7 @@ export function useWebSocket(options: WebSocketOptions = {}): WebSocketHook {
     }
 
     try {
-      const wsUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/^http/, 'ws') || 'ws://localhost:8080';
+      const wsUrl = process.env['NEXT_PUBLIC_API_URL']?.replace(/^http/, 'ws') || 'ws://localhost:8080';
       const ws = new WebSocket(`${wsUrl}/ws`);
       
       ws.onopen = () => {

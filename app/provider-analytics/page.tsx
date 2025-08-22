@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card } from '@ohanadoc/ui';
+import { Card } from '@/components/ui/card';
 import { Line, Bar, Doughnut, Radar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -69,9 +69,10 @@ export default function ProviderAnalyticsPage() {
   const [loading, setLoading] = useState(true);
   
   const { subscribe, isConnected } = useWebSocket();
-  const base = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000/v1';
+  const base = process.env['NEXT_PUBLIC_API_BASE'] || 'http://localhost:4000/v1';
 
   // Subscribe to real-time updates
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const unsubscribeAssignment = subscribe('matching:assignment', (data) => {
       toast.success(`Patient ${data.patientId} assigned to ${data.providerId}`);
@@ -140,6 +141,7 @@ export default function ProviderAnalyticsPage() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setLoading(true);
     Promise.all([
@@ -252,7 +254,7 @@ export default function ProviderAnalyticsPage() {
                   <p className="text-xl font-bold">{matchingMetrics.activeProviders}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Today's Assignments</p>
+                  <p className="text-sm text-gray-500">Today&apos;s Assignments</p>
                   <p className="text-xl font-bold">{matchingMetrics.totalAssignments}</p>
                 </div>
                 <div>

@@ -2,7 +2,7 @@
 
 import { Bell } from 'lucide-react';
 import { useNotifications } from '@/hooks/useNotifications';
-import { Button } from '@/components/ui/button';
+// Button component not needed - using custom trigger
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,31 +29,26 @@ export function NotificationBell() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
+      <DropdownMenuTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 hover:bg-gray-100 h-10 w-10 relative">
           <Bell className="h-5 w-5" />
           {unreadCount > 0 && (
             <Badge
-              variant="destructive"
               className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs"
             >
               {unreadCount > 9 ? '9+' : unreadCount}
             </Badge>
           )}
-        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-80" align="end">
         <DropdownMenuHeader className="flex items-center justify-between">
           <span className="font-semibold">Notifications</span>
           {unreadCount > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={markAllAsRead}
-              className="text-xs"
+              className="text-xs inline-flex items-center justify-center rounded-md font-medium transition-colors hover:bg-gray-100 h-9 px-3"
             >
               Mark all as read
-            </Button>
+            </button>
           )}
         </DropdownMenuHeader>
         <DropdownMenuSeparator />
@@ -84,9 +79,9 @@ export function NotificationBell() {
                           notification.type === 'error'
                             ? 'destructive'
                             : notification.type === 'warning'
-                            ? 'warning'
+                            ? 'secondary'
                             : notification.type === 'success'
-                            ? 'success'
+                            ? 'default'
                             : 'default'
                         }
                         className="text-xs px-1.5 py-0"
@@ -114,9 +109,7 @@ export function NotificationBell() {
             ))}
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 className="w-full justify-center"
                 onClick={() => {
                   // Navigate to notifications page
@@ -124,7 +117,7 @@ export function NotificationBell() {
                 }}
               >
                 View all notifications
-              </Button>
+              </button>
             </DropdownMenuItem>
           </>
         )}
