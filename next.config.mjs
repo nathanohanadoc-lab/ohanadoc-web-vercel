@@ -6,7 +6,8 @@ const nextConfig = {
   output: 'standalone',
   transpilePackages: ['@ohanadoc/ui', '@ohanadoc/core-domain'],
   experimental: {
-    typedRoutes: true
+    // Disabled to fix build errors
+    // typedRoutes: true
   },
   env: {
     NEXT_PUBLIC_API_BASE: process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000/v1',

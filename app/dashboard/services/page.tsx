@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card } from '@/components/ui/card';
 import { 
@@ -59,7 +59,7 @@ const serviceCategories: ServiceCategory[] = [
   }
 ];
 
-export default function ServicesPage() {
+function ServicesPageContent() {
   const searchParams = useSearchParams();
   const [services, setServices] = useState<Service[]>([]);
   const [filteredServices, setFilteredServices] = useState<Service[]>([]);
@@ -735,5 +735,17 @@ export default function ServicesPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+      </div>
+    }>
+      <ServicesPageContent />
+    </Suspense>
   );
 }

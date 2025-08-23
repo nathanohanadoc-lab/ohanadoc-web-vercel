@@ -19,12 +19,12 @@ import {
 } from 'lucide-react';
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { name: 'States', href: '/dashboard/states', icon: MapPin },
-  { name: 'Providers', href: '/dashboard/providers', icon: Users },
-  { name: 'Analytics', href: '/dashboard/analytics', icon: BarChart3 },
-  { name: 'Organization', href: '/dashboard/organization', icon: Building2 },
-  { name: 'Services', href: '/dashboard/services', icon: Briefcase },
+  { name: 'Dashboard', href: '/dashboard' as const, icon: BarChart3 },
+  { name: 'States', href: '/dashboard/states' as const, icon: MapPin },
+  { name: 'Providers', href: '/dashboard/providers' as const, icon: Users },
+  { name: 'Analytics', href: '/dashboard/analytics' as const, icon: BarChart3 },
+  { name: 'Organization', href: '/dashboard/organization' as const, icon: Building2 },
+  { name: 'Services', href: '/dashboard/services' as const, icon: Briefcase },
 ];
 
 export default function DashboardLayout({

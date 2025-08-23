@@ -10,6 +10,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@next/swc-linux-x64-gnu": "^15.5.0",
     "@tanstack/react-query": "5.55.0",
     "chart.js": "4.4.3",
     "class-variance-authority": "^0.7.1",
@@ -18,13 +19,16 @@
     "lucide-react": "^0.541.0",
     "next": "14.2.5",
     "next-auth": "^4.24.11",
-    "react": "18.3.1",
+    "react": "^18",
     "react-chartjs-2": "5.2.0",
-    "react-dom": "18.3.1",
+    "react-dom": "^18",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "zod": "3.23.8",
     "zustand": "4.5.5"
+  },
+  "optionalDependencies": {
+    "@next/swc-linux-x64-gnu": "14.2.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",

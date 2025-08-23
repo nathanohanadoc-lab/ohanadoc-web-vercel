@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
@@ -97,7 +97,7 @@ const generateMockProviders = (): Provider[] => {
   }));
 };
 
-export default function ProvidersPage() {
+function ProvidersPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [providers, setProviders] = useState<Provider[]>([]);
@@ -452,5 +452,17 @@ export default function ProvidersPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ProvidersPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+      </div>
+    }>
+      <ProvidersPageContent />
+    </Suspense>
   );
 }
