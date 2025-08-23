@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card } from '@/components/ui/card';
-import { 
-  MapPin, 
-  Users, 
-  DollarSign, 
+import { useWebSocketContext } from '@/contexts/WebSocketContext';
+import {
+  MapPin,
+  Users,
+  DollarSign,
   TrendingUp,
   Building2,
   Briefcase,
@@ -27,6 +28,7 @@ interface DashboardStats {
 }
 
 export default function DashboardPage() {
+  const ws = useWebSocketContext();
   const [stats, setStats] = useState<DashboardStats>({
     totalRevenue: 0,
     activeProviders: 0,
@@ -42,7 +44,7 @@ export default function DashboardPage() {
     // Check if user is authenticated
     const user = localStorage.getItem('user');
     const organization = localStorage.getItem('organization');
-    
+
     if (!user || !organization) {
       router.push('/');
       return;
@@ -50,7 +52,36 @@ export default function DashboardPage() {
 
     // Load dashboard stats
     loadDashboardStats();
-  }, [router]);
+
+    // Subscribe to real-time stats updates
+    const unsubscribeStats = ws.subscribe('dashboard:stats', (data) => {
+      setStats(prevStats => ({
+        ...prevStats,
+        ...data
+      }));
+    });
+
+    const unsubscribeRevenue = ws.subscribe('revenue:update', (data) => {
+      setStats(prevStats => ({
+        ...prevStats,
+        totalRevenue: data.totalRevenue || prevStats.totalRevenue,
+        monthlyGrowth: data.monthlyGrowth || prevStats.monthlyGrowth
+      }));
+    });
+
+    const unsubscribeProvider = ws.subscribe('provider:count', (data) => {
+      setStats(prevStats => ({
+        ...prevStats,
+        activeProviders: data.count || prevStats.activeProviders
+      }));
+    });
+
+    return () => {
+      unsubscribeStats();
+      unsubscribeRevenue();
+      unsubscribeProvider();
+    };
+  }, [router, ws]);
 
   const loadDashboardStats = async () => {
     try {

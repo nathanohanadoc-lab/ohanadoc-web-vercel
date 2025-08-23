@@ -10,9 +10,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@next/swc-linux-x64-gnu": "^15.5.0",
     "@tanstack/react-query": "5.55.0",
-    "chart.js": "4.4.3",
+    "chart.js": "^4.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

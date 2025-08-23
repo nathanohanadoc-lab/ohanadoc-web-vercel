@@ -4,24 +4,27 @@ import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { 
-  Building2, 
-  MapPin, 
-  Users, 
-  BarChart3, 
+import ConnectionStatus from '@/components/ConnectionStatus';
+import {
+  Building2,
+  MapPin,
+  Users,
+  BarChart3,
   Settings,
   Briefcase,
   LogOut,
   Menu,
   X,
   Moon,
-  Sun
+  Sun,
+  Activity
 } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard' as const, icon: BarChart3 },
   { name: 'States', href: '/dashboard/states' as const, icon: MapPin },
   { name: 'Providers', href: '/dashboard/providers' as const, icon: Users },
+  { name: 'Matching', href: '/dashboard/matching' as const, icon: Activity },
   { name: 'Analytics', href: '/dashboard/analytics' as const, icon: BarChart3 },
   { name: 'Organization', href: '/dashboard/organization' as const, icon: Building2 },
   { name: 'Services', href: '/dashboard/services' as const, icon: Briefcase },
@@ -105,20 +108,23 @@ export default function DashboardLayout({
               })}
             </nav>
 
-            {/* Right side actions */}
-            <div className="flex items-center gap-3">
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? (
-                  <Sun className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                ) : (
-                  <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                )}
-              </button>
+                      {/* Right side actions */}
+          <div className="flex items-center gap-3">
+            {/* Connection Status */}
+            <ConnectionStatus />
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              )}
+            </button>
 
               {/* Settings */}
               <Link

@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
+import { Toaster } from 'sonner';
+import { WebSocketProvider } from '@/contexts/WebSocketContext';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -14,5 +16,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  return <>{children}</>;
+  return (
+    <WebSocketProvider>
+      {children}
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: 'var(--bg-primary)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-primary)',
+          },
+        }}
+      />
+    </WebSocketProvider>
+  );
 }
