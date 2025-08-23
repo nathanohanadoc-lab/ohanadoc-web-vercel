@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { ThemeProvider } from './theme-provider'
 
 export const metadata: Metadata = {
   title: 'OhanaDoc Admin Dashboard',
@@ -23,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode 
 }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-background text-foreground">
         {/* Gradient Background Layers */}
         <div className="fixed inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900 dark:to-pink-900" />
@@ -39,7 +40,9 @@ export default function RootLayout({
         
         {/* Main Content */}
         <div className="relative z-10 min-h-screen">
-          {children}
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
         </div>
       </body>
     </html>

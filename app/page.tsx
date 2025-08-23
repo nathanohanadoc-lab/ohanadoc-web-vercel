@@ -44,6 +44,15 @@ export default function HomePage() {
     setError('');
     setLoading(true);
 
+    console.log('Sign in attempt:', { email, password }); // Debug log
+
+    // Validate inputs
+    if (!email || !password) {
+      setError('Please enter both email and password');
+      setLoading(false);
+      return;
+    }
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -53,7 +62,7 @@ export default function HomePage() {
       // In production, this would send OTP via email
       console.log('OTP: 123456'); // For demo purposes
     } else {
-      setError('Invalid email or password');
+      setError('Invalid email or password. Use: admin@ohanadoc.com / admin123');
     }
     
     setLoading(false);
@@ -219,6 +228,8 @@ export default function HomePage() {
             <input
               type="email"
               id="email"
+              name="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
@@ -234,6 +245,8 @@ export default function HomePage() {
             <input
               type="password"
               id="password"
+              name="password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
