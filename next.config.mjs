@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/admin',
+  // Remove basePath for Vercel deployment
+  // basePath: '/admin',
   output: 'standalone',
   transpilePackages: ['@ohanadoc/ui', '@ohanadoc/core-domain'],
   experimental: {
