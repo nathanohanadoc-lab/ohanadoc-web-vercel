@@ -108,16 +108,14 @@ export function NotificationBell() {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <button
-                className="w-full justify-center"
-                onClick={() => {
-                  // Navigate to notifications page
-                  window.location.href = '/notifications';
-                }}
-              >
-                View all notifications
-              </button>
+            <DropdownMenuItem 
+              className="w-full justify-center cursor-pointer"
+              onClick={() => {
+                // Navigate to notifications page
+                window.location.href = '/notifications';
+              }}
+            >
+              View all notifications
             </DropdownMenuItem>
           </>
         )}
