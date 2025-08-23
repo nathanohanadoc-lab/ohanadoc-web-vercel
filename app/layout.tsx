@@ -20,11 +20,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/icons32.png" sizes="32x32" />
-        <link rel="icon" href="/icons16.png" sizes="16x16" />
-        <meta name="color-scheme" content="light dark" />
-      </head>
       <body>
         {/* Gradient Background Layers */}
         <div className="fixed inset-0 z-0">
