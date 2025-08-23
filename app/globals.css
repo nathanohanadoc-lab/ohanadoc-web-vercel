@@ -78,16 +78,33 @@
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
   /* Dark Theme */
+  [data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --surface: rgba(30, 41, 59, 0.9);
+    --surface-elevated: rgba(30, 41, 59, 0.95);
+    --surface-glass: rgba(30, 41, 59, 0.8);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-muted: #64748b;
+    --border-primary: rgba(51, 65, 85, 0.8);
+    --border-secondary: rgba(71, 85, 105, 0.6);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+  
   @media (prefers-color-scheme: dark) {
     :root {
       --bg-primary: #0f172a;
       --bg-secondary: #1e293b;
       --bg-tertiary: #334155;
       --surface: rgba(30, 41, 59, 0.9);
-      --surface-elevated: rgba(51, 65, 85, 0.95);
+      --surface-elevated: rgba(30, 41, 59, 0.95);
       --surface-glass: rgba(30, 41, 59, 0.8);
       --text-primary: #f8fafc;
       --text-secondary: #cbd5e1;
@@ -137,9 +154,380 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--border-secondary);
   }
+  
+  /* State-Specific Branding */
+  .state-florida {
+    --state-primary: #FF6B35;
+    --state-secondary: #F7931E;
+    --state-tertiary: #FFD23F;
+    --state-gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD23F 100%);
+    --state-bg: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+  }
+  
+  .state-california {
+    --state-primary: #1E88E5;
+    --state-secondary: #FFC107;
+    --state-tertiary: #E53935;
+    --state-gradient: linear-gradient(135deg, #1E88E5 0%, #FFC107 50%, #E53935 100%);
+    --state-bg: linear-gradient(135deg, #1E88E5 0%, #FFC107 100%);
+  }
+  
+  .state-texas {
+    --state-primary: #BF5700;
+    --state-secondary: #FFFFFF;
+    --state-tertiary: #333F48;
+    --state-gradient: linear-gradient(135deg, #BF5700 0%, #F5F5F5 100%);
+    --state-bg: linear-gradient(135deg, #BF5700 0%, #FFFFFF 50%, #BF5700 100%);
+  }
+  
+  .state-newyork {
+    --state-primary: #003DA5;
+    --state-secondary: #FFB71B;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #003DA5 0%, #FFB71B 100%);
+    --state-bg: linear-gradient(135deg, #003DA5 0%, #FFB71B 50%, #003DA5 100%);
+  }
+  
+  .state-ohio {
+    --state-primary: #CE1126;
+    --state-secondary: #002F65;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #CE1126 0%, #002F65 100%);
+    --state-bg: linear-gradient(135deg, #CE1126 0%, #002F65 100%);
+  }
+  
+  .state-arizona {
+    --state-primary: #AB0520;
+    --state-secondary: #0C234B;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #AB0520 0%, #0C234B 100%);
+    --state-bg: linear-gradient(135deg, #AB0520 0%, #0C234B 50%, #AB0520 100%);
+  }
+  
+  .state-nevada {
+    --state-primary: #003f7f;
+    --state-secondary: #ffd700;
+    --state-tertiary: #c0c0c0;
+    --state-gradient: linear-gradient(135deg, #003f7f 0%, #ffd700 50%, #c0c0c0 100%);
+    --state-bg: linear-gradient(135deg, #003f7f 0%, #ffd700 100%);
+  }
+  
+  .state-washington {
+    --state-primary: #00843D;
+    --state-secondary: #4B9CD3;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #00843D 0%, #4B9CD3 100%);
+    --state-bg: linear-gradient(135deg, #00843D 0%, #4B9CD3 100%);
+  }
+  
+  .state-illinois {
+    --state-primary: #13294B;
+    --state-secondary: #E84A27;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #13294B 0%, #E84A27 100%);
+    --state-bg: linear-gradient(135deg, #13294B 0%, #E84A27 50%, #13294B 100%);
+  }
+  
+  .state-newjersey {
+    --state-primary: #CC0033;
+    --state-secondary: #FFFFFF;
+    --state-tertiary: #5F6A72;
+    --state-gradient: linear-gradient(135deg, #CC0033 0%, #E8E8E8 100%);
+    --state-bg: linear-gradient(135deg, #CC0033 0%, #FFFFFF 50%, #CC0033 100%);
+  }
+  
+  .state-alaska {
+    --state-primary: #236192;
+    --state-secondary: #FFB71B;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #236192 0%, #FFB71B 100%);
+    --state-bg: linear-gradient(135deg, #236192 0%, #FFB71B 25%, #236192 100%);
+  }
+  
+  .state-northdakota {
+    --state-primary: #009A44;
+    --state-secondary: #000000;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #009A44 0%, #2D2926 100%);
+    --state-bg: linear-gradient(135deg, #009A44 0%, #000000 50%, #009A44 100%);
+  }
+  
+  .state-southdakota {
+    --state-primary: #CD1041;
+    --state-secondary: #FFFFFF;
+    --state-tertiary: #000000;
+    --state-gradient: linear-gradient(135deg, #CD1041 0%, #F5F5F5 100%);
+    --state-bg: linear-gradient(135deg, #CD1041 0%, #FFFFFF 50%, #CD1041 100%);
+  }
+  
+  .state-hawaii {
+    --state-primary: #FF6B6B;
+    --state-secondary: #4ECDC4;
+    --state-tertiary: #FFE66D;
+    --state-gradient: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
+    --state-bg: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+  }
+  
+  .state-indiana {
+    --state-primary: #002F5F;
+    --state-secondary: #FF6B00;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #002F5F 0%, #FF6B00 100%);
+    --state-bg: linear-gradient(135deg, #002F5F 0%, #FF6B00 100%);
+  }
+  
+  .state-louisiana {
+    --state-primary: #461D7C;
+    --state-secondary: #FDD023;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #461D7C 0%, #FDD023 100%);
+    --state-bg: linear-gradient(135deg, #461D7C 0%, #FDD023 50%, #461D7C 100%);
+  }
+  
+  .state-michigan {
+    --state-primary: #00274C;
+    --state-secondary: #FFCB05;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #00274C 0%, #FFCB05 100%);
+    --state-bg: linear-gradient(135deg, #00274C 0%, #FFCB05 100%);
+  }
+  
+  .state-minnesota {
+    --state-primary: #003F7F;
+    --state-secondary: #FFD700;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #003F7F 0%, #FFD700 100%);
+    --state-bg: linear-gradient(135deg, #003F7F 0%, #FFD700 100%);
+  }
+  
+  .state-tennessee {
+    --state-primary: #FF8200;
+    --state-secondary: #FFFFFF;
+    --state-tertiary: #58595B;
+    --state-gradient: linear-gradient(135deg, #FF8200 0%, #F0F0F0 100%);
+    --state-bg: linear-gradient(135deg, #FF8200 0%, #FFFFFF 50%, #FF8200 100%);
+  }
+  
+  .state-virginia {
+    --state-primary: #232D4B;
+    --state-secondary: #F84C1E;
+    --state-tertiary: #FFFFFF;
+    --state-gradient: linear-gradient(135deg, #232D4B 0%, #F84C1E 100%);
+    --state-bg: linear-gradient(135deg, #232D4B 0%, #F84C1E 50%, #232D4B 100%);
+  }
+  
+  .state-wisconsin {
+    --state-primary: #C5050C;
+    --state-secondary: #FFFFFF;
+    --state-tertiary: #FFD700;
+    --state-gradient: linear-gradient(135deg, #C5050C 0%, #FFD700 100%);
+    --state-bg: linear-gradient(135deg, #C5050C 0%, #FFD700 100%);
+  }
+  
+  /* Apply state branding */
+  body.state-branded .header {
+    background: var(--state-gradient);
+    color: white;
+  }
+  
+  body.state-branded .header-title h1,
+  body.state-branded .section-title,
+  body.state-branded .stat-value,
+  body.state-branded .summary-value {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  body.state-branded .nav-pill.active,
+  body.state-branded .btn-primary,
+  body.state-branded .setup-button {
+    background: var(--state-gradient);
+  }
+  
+  body.state-branded {
+    background: var(--state-bg);
+  }
 }
 
 @layer components {
+  /* Header */
+  .header {
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-10);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-primary);
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  
+  .logo-container {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    animation: pulse 2s infinite;
+    overflow: hidden;
+  }
+  
+  .logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .header-title h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--space-1);
+  }
+  
+  .header-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+  
+  .theme-toggle {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-full);
+    padding: var(--space-3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .theme-toggle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+  
+  .theme-toggle:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .theme-toggle:hover::before {
+    opacity: 0.1;
+  }
+  
+  .theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    transition: all var(--transition-normal);
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Navigation */
+  .nav-container {
+    background: var(--surface-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-10);
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: var(--space-6);
+    z-index: 100;
+  }
+  
+  .nav-pills {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  
+  .nav-pill {
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    background: var(--surface);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-primary);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .nav-pill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: all var(--transition-normal);
+  }
+  
+  .nav-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--brand-primary);
+  }
+  
+  .nav-pill:hover::before {
+    opacity: 0.1;
+  }
+  
+  .nav-pill.active {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+  }
+  
+  .nav-pill.active::before {
+    opacity: 0;
+  }
+
   /* Glass Effect */
   .glass {
     background: var(--surface-glass);
