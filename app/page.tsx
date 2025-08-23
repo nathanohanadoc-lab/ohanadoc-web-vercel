@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card } from '@/components/ui/card';
-import { Building2, ArrowRight, Loader2 } from 'lucide-react';
+import { Building2, ArrowRight, Loader2, Moon, Sun } from 'lucide-react';
 
 // Mock users for demo
 const mockUsers = {
@@ -18,9 +18,18 @@ export default function HomePage() {
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [theme, setTheme] = useState('light');
   const router = useRouter();
 
   useEffect(() => {
+    // Load theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+
     // Check if already logged in
     const user = localStorage.getItem('user');
     const organization = localStorage.getItem('organization');
@@ -48,6 +57,18 @@ export default function HomePage() {
     }
     
     setLoading(false);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const handleOTPVerify = async (e: React.FormEvent) => {
@@ -81,7 +102,20 @@ export default function HomePage() {
 
   if (showOTP) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4 relative">
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+          ) : (
+            <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+          )}
+        </button>
+        
         <Card className="w-full max-w-md">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4">
@@ -150,7 +184,20 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 relative">
+      {/* Theme Toggle */}
+      <button
+        onClick={toggleTheme}
+        className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+        aria-label="Toggle theme"
+      >
+        {theme === 'dark' ? (
+          <Sun className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+        ) : (
+          <Moon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+        )}
+      </button>
+      
       <Card className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl mx-auto mb-4">
@@ -217,14 +264,22 @@ export default function HomePage() {
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Demo credentials:
-          </p>
-          <p className="text-sm font-mono text-gray-700 dark:text-gray-300 mt-1">
-            admin@ohanadoc.com / admin123
-          </p>
-        </div>
+                    <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-2">
+                Demo Credentials:
+              </p>
+              <div className="space-y-1">
+                <p className="text-sm font-mono text-blue-800 dark:text-blue-200">
+                  Email: admin@ohanadoc.com
+                </p>
+                <p className="text-sm font-mono text-blue-800 dark:text-blue-200">
+                  Password: admin123
+                </p>
+                <p className="text-sm font-mono text-blue-800 dark:text-blue-200">
+                  OTP: 123456
+                </p>
+              </div>
+            </div>
       </Card>
     </div>
   );
