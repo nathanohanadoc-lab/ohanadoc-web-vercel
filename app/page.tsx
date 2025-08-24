@@ -53,16 +53,21 @@ export default function HomePage() {
       return;
     }
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-    const user = mockUsers[email as keyof typeof mockUsers];
-    if (user && user.password === password) {
-      setShowOTP(true);
-      // In production, this would send OTP via email
-      console.log('OTP: 123456'); // For demo purposes
-    } else {
-      setError('Invalid email or password. Use: admin@ohanadoc.com / admin123');
+      const user = mockUsers[email as keyof typeof mockUsers];
+      if (user && user.password === password) {
+        setShowOTP(true);
+        // In production, this would send OTP via email
+        console.log('OTP: 123456'); // For demo purposes
+      } else {
+        setError('Invalid email or password. Use: admin@ohanadoc.com / admin123');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('An error occurred during login');
     }
     
     setLoading(false);
@@ -72,11 +77,15 @@ export default function HomePage() {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
+    
+    // Update both data-theme attribute and dark class
+    const root = document.documentElement;
+    root.setAttribute('data-theme', newTheme);
+    
     if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
     }
   };
 
@@ -293,6 +302,25 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+            
+            {/* Quick bypass for development/testing */}
+            <button
+              type="button"
+              onClick={() => {
+                localStorage.setItem('user', JSON.stringify({
+                  email: 'admin@ohanadoc.com',
+                  name: 'Admin User'
+                }));
+                localStorage.setItem('organization', JSON.stringify({
+                  name: 'Demo Healthcare Network',
+                  type: 'Multi-State Network'
+                }));
+                router.push('/dashboard');
+              }}
+              className="mt-4 w-full py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm"
+            >
+              Skip Login (Dev Mode)
+            </button>
       </Card>
     </div>
   );

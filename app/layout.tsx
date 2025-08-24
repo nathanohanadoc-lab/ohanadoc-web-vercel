@@ -24,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode 
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-background text-foreground">
+    <html lang="en" suppressHydrationWarning className="">
+      <body className="bg-white dark:bg-slate-900 text-gray-900 dark:text-white transition-colors">
         {/* Gradient Background Layers */}
         <div className="fixed inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-900 dark:via-purple-900 dark:to-pink-900" />
